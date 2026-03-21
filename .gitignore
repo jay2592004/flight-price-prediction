@@ -1,0 +1,73 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+**/.streamlit/secrets.toml
+
+# Build / distribution
+dist/
+build/
+
+# Logs
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Local data / model artifacts / generated reports
+*.csv
+*.parquet
+*.pkl
+*.joblib
+*.sqlite
+*.db
+*.html
+*.png
+
+# Project-specific generated outputs
+airfair_v2/plot_*.png
+airfair_v2/pipeline_plots/*.png
+**/data/processed/
+**/reports/*.png
+**/reports/insights.json
+**/logs/
+**/models/model.pkl
+**/models/encoders.pkl
+**/models/features.pkl
+
+# Optional local docs / notes
+*.docx

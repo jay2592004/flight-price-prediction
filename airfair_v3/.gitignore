@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Generated data (large — not for git)
+ml_pipeline/data/processed/
+
+# Trained model artefacts
+ml_pipeline/models/model.pkl
+ml_pipeline/models/encoders.pkl
+ml_pipeline/models/features.pkl
+# Keep model_meta.json if you want to track metrics in git
+# ml_pipeline/models/model_meta.json
+
+# EDA plots (regenerated on each train run)
+ml_pipeline/reports/*.png
+ml_pipeline/reports/insights.json
+
+# Logs
+ml_pipeline/logs/*.log
+
+# Keep directory structure
+!ml_pipeline/models/.gitkeep
+!ml_pipeline/reports/.gitkeep
+!ml_pipeline/logs/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Streamlit
+streamlit_app/.streamlit/secrets.toml

@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Jupyter / dev notebooks
+*.ipynb
+.ipynb_checkpoints/
+
+# Generated data (mount via volume — don't bake in)
+ml_pipeline/data/processed/
+
+# Model artefacts (mount via volume — don't bake in)
+ml_pipeline/models/model.pkl
+ml_pipeline/models/encoders.pkl
+ml_pipeline/models/features.pkl
+
+# EDA plots
+ml_pipeline/reports/*.png
+ml_pipeline/reports/insights.json
+
+# Logs
+ml_pipeline/logs/*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

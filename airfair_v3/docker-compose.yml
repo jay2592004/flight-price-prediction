@@ -1,0 +1,74 @@
+version: "3.9"
+
+# ═══════════════════════════════════════════════════════════════
+#  AirFair Vista — Two-Service Production Stack
+#
+#  Service 1: ml_pipeline  — runs train.py once, then exits
+#  Service 2: streamlit_app — serves the UI on port 8501
+#
+#  Shared volume: ml_pipeline/models/ and ml_pipeline/reports/
+#  are mounted into both containers so the app always reads
+#  the latest trained model and EDA plots.
+#
+#  Usage:
+#    docker-compose up --build          # build + run both
+#    docker-compose run ml_pipeline     # retrain only
+#    docker-compose up streamlit_app    # serve only (model must exist)
+# ═══════════════════════════════════════════════════════════════
+
+services:
+
+  # ── ML Pipeline (training) ──────────────────────────────────
+  ml_pipeline:
+    build:
+      context: ./ml_pipeline
+      dockerfile: Dockerfile
+    container_name: airfair-ml-pipeline
+    image: airfair-ml-pipeline:latest
+    volumes:
+      - ./ml_pipeline/data:/app/data
+      - ./ml_pipeline/models:/app/models
+      - ./ml_pipeline/reports:/app/reports
+      - ./ml_pipeline/logs:/app/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+    # Exits after training — this is intentional.
+    # streamlit_app depends_on: ml_pipeline with condition: service_completed_successfully
+    restart: "no"
+    healthcheck:
+      test: ["CMD", "test", "-f", "/app/models/model.pkl"]
+      interval: 10s
+      timeout: 5s
+      retries: 60          # waits up to 10 min for training to finish
+      start_period: 30s
+
+  # ── Streamlit App (frontend) ────────────────────────────────
+  streamlit_app:
+    build:
+      context: ./streamlit_app
+      dockerfile: Dockerfile
+    container_name: airfair-streamlit
+    image: airfair-streamlit:latest
+    ports:
+      - "8501:8501"
+    volumes:
+      # Read-only access to trained model and EDA plots
+      - ./ml_pipeline/models:/ml_pipeline/models:ro
+      - ./ml_pipeline/reports:/ml_pipeline/reports:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+      # Tell the app where to find ml_pipeline artefacts
+      - ML_PIPELINE_PATH=/ml_pipeline
+    depends_on:
+      ml_pipeline:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import urllib.request; urllib.request.urlopen('http://localhost:8501/_stcore/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s

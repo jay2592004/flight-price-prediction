@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Generated data (large files — not for git)
+data/flight_price_synthetic.csv
+data/flight_price_combined.csv
+
+# Trained model artefacts — not for git (use DVC or registry)
+models/model.pkl
+models/encoders.pkl
+models/features.pkl
+# Keep directory structure tracked
+!models/.gitkeep
+!logs/.gitkeep
+
+# Logs
+logs/*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Streamlit
+.streamlit/secrets.toml
