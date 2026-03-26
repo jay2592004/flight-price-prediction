@@ -74,6 +74,27 @@ make app
 # → http://localhost:8501
 ```
 
+### Windows PowerShell
+
+Windows does not include `make` by default. From the project root, use the bundled
+PowerShell task runner instead:
+
+```powershell
+cd airfair_v3
+
+# 1. Install all dependencies
+.\tasks.ps1 install
+
+# 2. Train locally
+.\tasks.ps1 train
+
+# 3. Launch the app
+.\tasks.ps1 app
+```
+
+It supports the same targets as the `Makefile`, including `train-large`,
+`train-force`, `train-skip-eda`, `up`, `down`, and `retrain`.
+
 ### Option B — Docker (production)
 
 ```bash
