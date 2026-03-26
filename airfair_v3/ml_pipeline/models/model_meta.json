@@ -1,0 +1,65 @@
+{
+  "model_name": "LightGBM",
+  "trained_at": "2026-03-23T12:00:43.949952",
+  "mape": 10.59,
+  "r2": 0.947,
+  "mae": 3658,
+  "rmse": 6065,
+  "baseline_mape": 82.82,
+  "cv_mape_mean": 34.87,
+  "cv_mape_std": 12.73,
+  "n_features": 32,
+  "train_rows": 102000,
+  "test_rows": 18000,
+  "total_rows": 120000,
+  "all_models": {
+    "Linear Regression": {
+      "mape": 50.69,
+      "mae": 15999.0,
+      "r2": 0.1969,
+      "rmse": 23616.0
+    },
+    "Ridge Regression": {
+      "mape": 50.69,
+      "mae": 15999.0,
+      "r2": 0.1969,
+      "rmse": 23616.0
+    },
+    "Random Forest": {
+      "mape": 10.85,
+      "mae": 4575.0,
+      "r2": 0.9018,
+      "rmse": 8257.0
+    },
+    "Gradient Boosting": {
+      "mape": 11.36,
+      "mae": 3915.0,
+      "r2": 0.9404,
+      "rmse": 6433.0
+    },
+    "XGBoost": {
+      "mape": 10.69,
+      "mae": 3695.0,
+      "r2": 0.9457,
+      "rmse": 6139.0
+    },
+    "LightGBM": {
+      "mape": 10.59,
+      "mae": 3658.0,
+      "r2": 0.947,
+      "rmse": 6065.0
+    }
+  },
+  "shap_top10": {
+    "Class_Enc": 13371.0413,
+    "Airline_Tier_Enc": 4683.2098,
+    "Distance_km": 3629.9993,
+    "Days_Until_Departure": 2914.1963,
+    "Class_Dist_Interact": 2132.5215,
+    "Seat_Availability": 1350.6808,
+    "Fleet_Age_Years": 1312.8702,
+    "Journey_Month": 1220.6148,
+    "Season_Enc": 1215.7371,
+    "Stops_Dist_Interact": 1087.666
+  }
+}
